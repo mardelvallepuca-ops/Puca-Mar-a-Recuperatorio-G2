@@ -1,0 +1,32 @@
+PUCA MARIA DEL VALLE 
+
+Write-Host "Iniciando monitoreo de conectividad..."
+
+for ($i = 1; $i -le 3; $i++) {
+
+    $fechaHora = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
+
+    Write-Host ""
+    Write-Host "Intento $i - Fecha y hora: $fechaHora"
+
+    # Verificar conectividad con DNS de Google
+    $resultado = Test-Connection -ComputerName 8.8.8.8 -Count 1 -Quiet
+
+    if ($resultado) {
+        Write-Host "Conexion exitosa con 8.8.8.8"
+    }
+    else {
+        Write-Host "No se obtuvo respuesta de 8.8.8.8"
+    }
+
+    # Evaluar si la iteración es par o impar
+    if (($i % 2) -eq 0) {
+        Write-Host "La iteracion $i es PAR."
+    }
+    else {
+        Write-Host "La iteracion $i es IMPAR."
+    }
+}
+
+Write-Host ""
+Write-Host "Monitoreo concluido con exito."
